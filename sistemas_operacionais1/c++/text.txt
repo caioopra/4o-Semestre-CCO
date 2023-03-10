@@ -1,0 +1,19 @@
+Bibliotecas-padrão C++
+
+cmath
+cstdlib: conversão de números para texto, texto p numero, alocacao de mem, num aleatórios (stdlib de C)
+ctime  : manipulação de hora e data
+vector, list, deque, queue, stack, map, set, bitset
+cctype : testam caracteres em busca de propriedades (se é digito ou sinal de pontuação), converter min em maiuscula e vice-versa
+cstring: processamento de strings no estilo de C
+typeinfo: identificar tipo em runtime
+exceptiom, stdexcept: tratamento de exceções
+memory: entrade de arquivos no disco e sauda para arquivos no disco
+string: classe string da lib padrao
+sstream: entrada de strings na memoria e esaida para strings na memoria
+
+
+=> possui function overloading (ações similares em tipos diferentes)
+
+--------------------
+
