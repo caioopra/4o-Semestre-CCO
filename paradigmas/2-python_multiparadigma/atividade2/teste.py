@@ -1,32 +1,33 @@
-import time
-
-start = time.time()
-
 N = int(input())
+
+MIN_OPER = "MIN"
+POP_OPER = "POP"
 
 pilha = []
 menor = 0
+tamanho_pilha = 0
 
 while N:
     operacao = input().split()
     
-    if operacao[0] == "MIN":
-        if len(pilha):
+    if operacao[0] == MIN_OPER:
+        if tamanho_pilha:
             print(pilha[-1][1])
         else: 
             print("EMPTY")
             
-    elif operacao[0] == "POP":
-        if len(pilha):
+    elif operacao[0] == POP_OPER:
+        if tamanho_pilha:
+            tamanho_pilha -= 1
             pilha.pop()
         else:
             print("EMPTY")
     else:
-        if menor > int(operacao[1]) or menor == 0:
-            menor = int(operacao[1])
-        pilha.append((int(operacao[1]),menor))
+        valor = int(operacao[1])
+        if menor > valor or menor == 0:
+            menor = valor
+        pilha.append((valor,menor))
+        tamanho_pilha += 1
         print(pilha)
     
     N = N - 1
-    
-print(time.time() - start)
