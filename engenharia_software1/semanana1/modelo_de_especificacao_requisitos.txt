@@ -1,0 +1,25 @@
+=> identificação do documento ("capa")
+	-> projeto: identificação do projeto ("Especificação de requisito de software")
+	-> identificador do projeto (código, padrão da empresa, incluir data de criacao)
+	-> versão 
+	-> data de conclusão da versão
+
+	-> complementos: histórico do documento (tabela: versao, autor, data, acao); conteúdo (índice)
+=> 3 seções:
+	- introdução
+		-> objetivo do desenvolvimento
+		-> definições, abreviaturas (info. necessária para ler o documento)
+		-> referências (site, ...; ao inves de transcrever, deixa claro que informação é e de onde é)
+
+	- visão geral do sistema
+		-> arquitetura do software (estrutura modular da aplicação; como vai ser implementado)
+		-> premissas de desenvolvimento ("caracteristicas" fundamentais (requisitos não funcionais destacados) )
+			-> linguagem de programação
+			-> aquilo que é importante ressaltar como uma premissa, inegociável (se não, vai pra parte de requisitos)
+
+	- requisitos da aplicação
+		-> regras de negócio (caso for distinguir)
+		-> requisitos funcionais
+		-> requisitos não funcionais
+
+		=> todo requisito: título e texto descritivo (pode ter uma sigla pra ele)

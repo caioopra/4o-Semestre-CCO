@@ -1,0 +1,40 @@
+Requisitos de software
+	-> característica a ser atendida quando for produzido o software
+	-> rumo do desenvolvimento
+
+	-> requisito funcional (algo que o programa tem que fazer) e não funcional (característica do programa mas nõa fazer algo)
+
+	=> funcional: algo que o software deve executar
+		-> "verbo no infinitivo"
+		-> ex.: sist. de matrícula: mostrar turmas, editar solicitação de matricula, avalair solicitacao, ...
+		
+		-> descrição de requisito funcional: 5W1H (what, why, who (diferentes usuários), when, where, how)
+			-> respondidas para cada requisito, mas não necessariamente no texto do documento
+			-> "como?": considera e tem restrições (regras de negócio)
+
+	=> não funcional: característica necessária (não uma funcionalidade)
+		-> pode ser restrição associada a funcionalidades
+		-> "programa deve ser implementado na linguagem ...", "persistência redundante em ..." (afeta requisito funcional)
+		-> pode os organizar em categorias (interface, suporte de desenvolvimento, plataforma de execução, segurança, performance, ...
+		-> em seção específica no documento
+		-> mais simples que funcional
+
+
+- Regra de negócio (não é requisito de software)
+	-> "requisito de domínio do problema"
+	-> não depende do mundo computacional
+	-> afeta requisitos funcionais
+
+	-> regra associada ao domínio do problema
+	-> regras referenciadas pelos requisitos funcionais
+
+	=> descrição de regra de negócio:
+		-> 1) em seção específica com todas regras e requisitos funcionais as referenciam
+		-> 2) no corpo dos requisitos funcionais como parte do texto (sem dizer que aquilo é uma RN) a descrevendo
+
+- Caso de uso
+	-> conceito de UML
+	-> relação com requisitos funcionais 
+	-> "funcionalidade de software", necessidade de correspondência a pelo menos um requisito funcional
+		-> e req. funcional corresponde a pelo menos um caso de uso do projeto de software
+

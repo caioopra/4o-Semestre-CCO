@@ -1,0 +1,86 @@
+INTRODUÇÃO À MODELAGEM OO
+=> descrição diagramática de algo a ser implementado em linguagem de programação
+=> modelagem diagramática (prescritiva quando ainda vai ser implementado e descritiva quando descreve após) -> visual, nesse caso
+=> conteúdo do programa mas em outro formato (programação = textual)
+
+=> software complexo exige planejamento (modelagem OO e codificação depois)
+	-> baixa complexidade é viável codificar direto
+
+=> vantagens:
+	-> descrição mais fácil para compreender (!= pensar em linguagem de programação)
+	-> diferentes pontos de vista (estrutura do software, dinâmica (programa em execução), visão global e atenção em detalhes)
+	
+=> conceitos referentes a modelagem: por que e pra que modelar; noções de eng. de soft.; paradigma OO; requisitos pra modelagem completa
+=> linguagem de modelagem: UML 2; treze diagramas de UML, pra que serve cada
+=> saber que passos seguir: desenvolvimento de software (construir a solução); conhecer caminho lógico pra construção de especificação; saber usar bem a linguagem UML (ou a escolhida)
+=> avaliar o que foi produzido: consistência (ter ou não erro) e qualidade (pode funcionar, mas com pouca qualidade no software); critérios pra cada
+
+
+
+FUNDAMENTOS DE MODELAGEM OO
+
+1. Engenharia de software: busca meios sistemáticos de desenvolvimento de software
+	-> voltada ao desenv. de aplicações de grande porte; aspectos tecnológicos e gerenciais (coordenação de times, cronograma, ...)
+	-> meios sistemáticos de desenvolvimento de software
+	
+-> melhorar relação custo benefício
+-> visa maximização da qualdiade e produtividade na atividade de desenv. de software
+
+2. Complexidade no desenv. de software
+-> mais relevante que aumento do esforço do desenv ou tamanho de produto é a dificuldade de administrar a complexidade
+-> permite tratar software complexo sem perder controle do conjutno de informações dele
+-> facilitar a compreensão e localizar infomrções mais facilmente
+
+-> aumento contínuo da complexidade (é limitada pela capacidade de hardware, logo, aumenta demanda por software mais complexo)
+
+-> abordagens metódicas de desenvolvimento
+-> ferramentas e desenvolvimento que automatizem atividades
+-> reuso de software
+
+3. Ciclo de vida do software: conjunto de etapas que software passa ao longo da sua existência
+-> análise, projeto, implementação, testes, manutenção
+	-> planejamento do que construir (1 e 2)
+	-> construção (3 e 4)
+	-> alteração posterior aos desenv. (5)
+
+4. Análise orientada a objetos
+-> objetivo da análise é modelagem do domínio do problema
+-> domínio do problema: conjunto de fatos e conceitos associados ao problema que deseja tratar
+	-> tratmento deve ignorar o tanto quanto possível a existência do mundo computacional
+-> análise OO: produzir modelagem do dom. do problema, descrevendo como conjunto de classes
+-> projeto OO: modelagem do dom. da solução computacional	
+	-> selecionar alternativas que formam solução, def. classes correspondentes à sol. computacional
+
+=> análise do problema e projeto da solução
+
+=> resultado de análise e projeto OO:
+	1. duas especificações: uma da análise e outra do projeto
+	2. uma: extensão da especificação de análise	-> adotada
+	
+5. Proecesso e desenv. de software
+-> caminho seguido para desenvolver software
+	-> conjunto de soluções, etapas, atividades associadas a cada e suas sequências, com as metodologias, modelos, padrões e ferramentas usados em cada atividade
+
+6. Requisitos para especificação de software
+-> mecanismo de registro (linguagem) => registro das decisões do projeto
+-> ling. deve suportar diferentes níveis de abstração => tratar globalidade ou detalhe
+
+-> níveis de abstração: 
+	totalidade (abstrai detalhes, maior abstração), 
+	imediatamente inferior (menos detalhes), 
+	mais baixo nível (detalhe, evitar descrição densa, sem visão da globalidade)
+
+
+ELEMENTOS DE UM PROGRAMA OO
+=> tempo de desenv.: foco é conjutno de classes que compoe o software (com seus atributos e métodos)
+	-> produzir programa OO: criar as classes adequadas pra solucionar o que elas precisam fazer
+	-> identificar as classes (mdoelar os elementos do dominio do problema tratado)
+		-> identificar e distribuir os atributos e métodos => decisões de projeto
+=> tempo de execução: objetos interagindo
+	-> interação entre isntancias de objetos ao longo do tempo
+
+=> antever como o software vai se comportar em execução, interações e registrar o que acontece em tempo de execução na especificação do projeto
+
+=> UML: registrar e visualizar os dois pontos de vista
+
+
