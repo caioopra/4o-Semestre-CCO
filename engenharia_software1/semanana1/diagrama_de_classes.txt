@@ -1,1 +1,109 @@
 => elementos sintáticos e suas finalidades na modelagem
+
+=> representação de atributo (exemplo - sintaxe)
+	ocupante
+	# ocupante: Jogador
+	# jogadores: Jogador [2..5]{ordenado, único}
+	
+	[<visibilidade>]["/"] <nome> [":" <tipo>] ["["<multiplicidade>"]"]["="<valor_inicial>] ["{"<multiplicidade>[",<propriedade>]*"}"]
+	
+	-> somente o nome é obrigatíorio
+	-> propriedade, mesmo que previsto, não é recomendado ou apoiado pelos aplicativos
+	
+=> métodos: mínimo é o nome e ()
+	+ iniciar()
+	+ alocarPeao(onde: Posicao, quem: Jogador): boolean
+	
+	[visibilidade]<nome>"("[<lista_parametros>]")" [":"[<tipo_retorno]"{"<propriedade[","<propriedade>]*"}"]
+	
+VISIBILIDADE
+- atributos
+	=> protegido: só visível para o objeto que o possui, atributos herdades ou definidos na classe tratados de mesma forma
+		-> recomendado!
+		-> princípio da ocultação de informação do paradigma OO
+	=> públiclos JAMAIS
+	=> privado
+		-> questões especifiais
+	
+- métodos:
+	-> em geral, sempre públicos (meio externa acessa a classe por eles)
+	-> necessidades específicas pode ser mais restrito
+
+
+
+Métodos:
+	-> concreto: assinatura e corpo (pode ser invocado em runtinme pra cumprir responsabilidade dele)
+	-> abstrato: só com assinatura (declaração de responsabilidade, mas sem conseguir cumprir; sem algoritmo)
+		-> itálico no diagrama
+		
+Classe:
+	-> concreta: apenas métodos concretos => implementada
+	-> abstrata: pelo menos um método abstrato
+		-> identificador da classe em itálico
+		-> nem todas implementadas (não pode criar instâncias em tempo de execução)
+
+-------------------
+
+HERANÇA
+=> representação: seta saindo da subclasse pra superclasse com triângulo em branco na ponta
+=> "subclasse é uma espécie de superclasse"
+=> unidirecional
+=> semântica da herança:
+	-> atributos e métodos da superclasse são herdados pela subclasse
+
+=> método em subclasse com mesma assinatura d eum definido em superclasse = sobrescrita do método herdados
+
+=> classe abstrata: pelo menos um método abstrato, que pode ser definido nela ou herdado e não sobrescrito
+
+------------------
+
+RELACIONAMENTOS ENTRE CLASSES: AGREGAÇÃO, COMPOSIÇÃO E ASSOCIAÇÃO
+=> composição: retangulo preenchido
+=> agregação : miolo não preenchido
+|-> "posse" de objetos em ambos os casos
+
+
+Agregação: relacionamento entre duas classes que estabelece que uma instancia de uma agrupoa ou mais instancias da outra
+	=> relacionamento todo/parte ( outro nome)
+	=> na prática, é entre as instancias
+
+Composição: "agregação forte", restrições na ligação entre parte e agregado (todo)
+	=> uma instância da parte é agregada por uma única instancia no agregado (sem compartilhamento da parte)
+		-> "uma posição de tabuleiro não pode pertencer a dois tabuleiros"
+	=> existência da parte depende da existência do agregado
+		-> criar o agregado vem antes da instanciacao da parte
+		-> destruir agregado = destruir parte
+	
+Associação (linha entre as duas classes): relação entre as classes, mas não é herança nem agregação nem composição
+	-> unidirecional ou bidirecional
+	-> pode envolver mais de uma classe
+		-> entre duas: associação binária
+	-> uma pode apontar para outra/as duas entre si
+
+	-> Associação com rótulo e papéis
+	-> associação com indicação de ordem de leitura (triangulo preto apontando para classe "classe1"  <algo escrito> |> "classe2"
+	-> associação com navegabilidade explícita: x em uma ponta e seta na outra
+		-> a do x aponta para a outra
+		-> em algum lugar da do x, vai ter referencia explícita à classe da outra
+		-> x = não vai ter referência da classe apontada na que aponta
+	
+OUTROS RELACIONAMENTOS ESPECIALIZADOS
+
+Realização (linha pontilhada com seta branca na ponta, saindo da concreta pra interface): entre dois elementos, um deles especifica responsabilidade a ser implementada e outro incorpora obrigação de implementá-la
+	-> associaçõa entre classe a interface
+	
+Dependência (linha pontilhada com seza "sem preenchimento e não fechada >"): entre dois elementos, um deles é declarado dependente daquilo que deve estar implementado em outro
+	-> um é cliente dos serviços oferecidos pelo outro
+	-> relacionar outros elementos além de classes (como interface e classe)
+	
+		=> interface não é classe: declaração de responsabilidade
+		
+Vinculação de classes a uma interface previamente definida
+-> realização como bolinha vazia e dependência como semicirculo
+
+
+Estereótipo: estender significado do elemento de modelagem à quem ele é associado
+	-> pode ser usado em classes pra dividir em categorias em uma especificação
+	-> classes ou qualquer elemento em diagrama
+	-> <<nome>>  ( agrupar essa classe em categorias; uma das classes dessa categoria/estereótipo)
+	-> acrescentar informações
