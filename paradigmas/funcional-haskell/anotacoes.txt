@@ -1,0 +1,163 @@
+COMPILAÇÃO
+ghc -o executavel arquivo.hs
+ghc --make arquivo.hs -v		=> compilar arquivo e módulos
+
+
+
+PRELUDE
+ghci  -> executar comandos em tempo real ("IDLE do python"); testar código e comando
+
+:t expressao/funcao	=> descobrir tipo
+:cd pasta		=> navegar em pastas
+:l aruivo.hs		=> carregadr arquivo.hs
+:h			=> ajuda
+
+
+COMENTÁRIO
+--
+{-   .....        -}  => multilinha
+
+
+
+
+OPERADORES
+- aritméticos
++, 0, *, `mod`, `div`
+	=> usando a crase no nome da funcao, pode chamar " 5 `mod` 2" ou pra qualquer funcao
+
+** => exponenciacao com ponto flutuante
+^  => exponenciacao inteira positiva
+^^ => exponenciação inteira (aceita positivo e negativo)
+
+
+- lógicos
+||, &&, not
+
+- relacionais
+==, /= (diferente), >, >=, <, <=
+
+
+
+Construtores de listas:
+:
+[]
+..
+
+
+Construturoes Lambda (funções anonimas)
+\
+->
+
+Concatenação
+++
+
+
+=> caracter _   : "coringa", trocar variável que não vai usar pra nada
+	-> não deixa acessar o valor
+	-> iniciar variável caso não vá usar o valor pra nada
+
+	select_segundo (_x, y, _) = y
+		-> não consegue acessar os dois valores pra função, poderia deixar apenas _
+	-> colocar _variavel (mais viável, saber ordem dos parametros e o que significam)
+		-> parentese nesse caso é porque é uma tupla, não precisa pra colocar os parâmetros
+		-> última coisa executada é o valor do retorno
+
+
+Entrada e saída de dados
+getLine :: IO String	-> le da IO uma String
+getChar :: IO Char	-> le da IO um Char
+putStrLn :: String -> IO()  -> recebe uma String e retorna uma ação de IO
+print :: Show a => a -> IO()  -> aplica show w retorna uma ação de IO
+	-> "monad IO"
+
+
+
+main = putStrLn "Olá Mundo!"
+
+main = do		-- monad (permite apenas trabalhar com monads dentro dele)
+	putStrLn "Idade: "
+	idade <- getLine
+	putStrLn "Sua idade: " ++ idade)
+
+=> identação é importante como no python
+
+	
+=> vincular valores a um nome "<-" para ações de IO e let para outras expressões
+=> naõ precisa declarar os tipos da função, mas facilita
+
+avaliacao :: Float -> String
+avaliacao x = 
+	if x < 6.0 then
+		"Reprovado"
+	else
+		"Aprovado"
+
+main = do
+	putStrLn "Nota: "
+	notaString <- getLine
+
+	-- convetendo nota para float
+	let nota = (read notaString :: Float)
+
+	-- resultado da avaliacao da nota para resultado
+	let resultado = (avaliacao nota)
+	putStrLn ("Com " ++ notaString ++ " voce esta " ++ resultado)
+
+	-- ou chamando direto a funcao avaliacap
+	putStrLn ("Com " ++ notaString ++ " voce esta " ++ (avaliacao nota))
+
+
+
+avaliacao x y z ==
+	...
+
+
+-- recebendo dois floats e retornando um float
+-- ultimo valor que aparce é considerado a saida
+areaRetangulo :: Float -> Float -> Float
+areaRetangulo base altura = base * altura
+
+main do = 
+	baseString <- getLine
+	alturaString <- getLine
+	let base = (read baseString :: Float)
+	let altura = (read alturaString :: Float)
+	print (areaRetangulo base altura)
+
+
+
+
+
+-- fatorial de n
+fatorial :: Int -> Int
+fatorial 0 = 1
+fatorial n = n * fatorial (n-1)
+
+main do =
+	nString <- getLine
+	let n = 
+
+-> caso tenha algum caso que possa executar primeiro, vai executar e depois sair, não executando o que vem abaixo
+
+
+
+
+Quando tem 1 caracter e usar getChar, precisa colocar um outro getChar/Line pra ler o \n caso queria ler o que vem abaixo
+
+op <- getChar
+-- ignorando espacos e caracteres que podem vir depois na entrada 
+_ <- getLine
+strX <- getLine
+...
+
+
+Guarda: outra forma de fazer uma selecao
+
+funcao :: Int -> Int
+funcao x | (x == 0) = 0
+	 | (x == 1) = 1
+	 | otherwise = 10
+
+
+main = print(funcao 2)			-> 10
+
