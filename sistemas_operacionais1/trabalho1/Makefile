@@ -1,50 +1,28 @@
-PROJECT=operational_systems
-
-# arquivos .cc
-CC_SOURCE=$(wildcard ./src/*.cc)
-
-# arquivos .h
-H_SOURCE=$(wildcard ./src/*.h)
-
-# arquivos objeto
-OBJ=$(subst .cc,.o,$(subst src,lib,$(CC_SOURCE)))
-
-# compilador
 CC=g++
+CFLAGS=-c -Wall
+SRCDIR=src
+INCDIR=include
+BUILDDIR=build
+SOURCES=$(wildcard $(SRCDIR)/*.cc) $(wildcard $(INCDIR)/*.cc)
+OBJECTS=$(patsubst %.cc, $(BUILDDIR)/%.o, $(notdir $(SOURCES)))
+EXECUTABLE=trabalho1_SO
 
-RM = rm -rf
+build: directories $(SOURCES) $(EXECUTABLE)
 
-# Flags for compiler
-CC_FLAGS=-c         \
-         -W         \
-         -Wall      \
-         -ansi      \
-         -pedantic
+$(EXECUTABLE): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(BUILDDIR)/$@
 
-# -----------
-# compilacao
-all: objFolder $(PROJECT)
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cc | directories
+	$(CC) $(CFLAGS) $< -o $@
 
-$(PROJECT): $(OBJ)
-	@ echo 'Building binary using G++'
-	$(CC) -o $@ $^
-	@ echo 'Finished building binary: $@'
-	@echo ' '
+$(BUILDDIR)/%.o: $(INCDIR)/%.cc | directories
+	$(CC) $(CFLAGS) $< -o $@
 
-./lib%.o: ./src/%.c ./src/%.h
-	@ echo 'Building target using G++' 
-	$(CC) $< $(CC_FLAGS) -o $@
-	@ echo 'Finished building target'
+.PHONY: directories
+directories:
+	mkdir -p $(BUILDDIR)
 
-./lib/main.o: ./src/main.cc $(H_SOURCE)
-	@ echo 'Building main'
-	$(CC) $< $(CC_FLAGS) -o $@
-	@ echo ' '
-
-objFolder:
-	@ mkdir -p lib
 clean:
-	@ $(RM) ./lib/*.o $(PROJECT) *~
-	@ rmdir lib
+	rm -rf $(BUILDDIR)/*
 
-.PHONY: all clean
+.PHONY: clean
