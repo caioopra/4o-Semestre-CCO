@@ -1,4 +1,4 @@
-N = int(input())
+N = int(input())    
 
 MIN_OPER = "MIN"
 POP_OPER = "POP"
