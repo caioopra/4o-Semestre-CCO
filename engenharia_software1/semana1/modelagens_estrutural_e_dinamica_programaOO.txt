@@ -1,0 +1,35 @@
+=> informação mínima pra saber se a modelagem está correta ou pronta
+	-> incompleta ou com redundâncias não são boas
+	
+=> convenção pra modelagem estar completa:
+	-> possuir todas informações pra que possa executar a codificação
+	-> possuir todas informações pra compreender o que está implementado (manutenção estudando a especificação)
+
+=> diagrama de classes não é modelagem completa pra compreender o código (manutenção nem implementação)
+	-> pode não deixar claro como implementar um método ou regras de negócio
+=> informações adicionais pra gerar e entender o código existente
+=> dá esqueleto da classe mas falta detalhamento dos algoritmos dos métodos
+
+=> Coad e Yourdon (diagrama de classes + especificação de classe e objeto = todas informações)
+	-> difícil compreensão do que o código faz apenas com as especificações
+
+=> sistemas físicos estáticos e dinâmicos ("tempo", alteração de estados ao longo do tempo ou não, precisando de modelagem que considere o tempo)
+	-> modelagem estrutural apenas para os estáticos (descrição do conjutno de partes e como se interligam)
+
+=> Sistemas físicos SEM carac. dinâmicas: modelagem estrutural (apenas)
+=> Sistemas físicos COM carac. dinâmicas: modelagem estrutural e dinâmica
+	-> software se enquadra nessa classificação!
+		-> atenção a totalidade (conjunto de classes) ou em partes (detalhamento das classes) do sistema modelado
+
+=> quatro pontos de vistas fundamentais:
+	- modelagem estrutural do sistema: conjunto de elementos que compõe software OO e seus relacionamentos
+		-> diagrama de classes (e outros diagramas estruturais ajudam)
+	- modelagem dinâmica do sistema: conjunto de funcionalidades do software e seu detalhamento (como objetos interagem ao longo do tempo)
+	- modelagem estrutural da parte (classe): métodos e atributos
+		-> diagrama de classes
+	- modelagem dinâmica da parte (classe): parte executável de um programa observável em uma instâncoia de classe (evolução de estados dos objetos)
+	
+
+=> requisito pra modelagem completa: geração e compreensão de código existente
+=> pra ser cumprido, os 4 pontos de vista fundamentais devem ser cobertos
+
