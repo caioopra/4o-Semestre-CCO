@@ -1,0 +1,141 @@
+Construtores:
+	: , [] , ..
+
+vazia: []
+
+2:4:6:8:[]	=> [2, 4, 6, 8]
+	-> : = "append"
+
+'u':'f':'s':'c':[]	=> "ufsc"
+	-> string = lista de caracteres
+
+(1, 'a'):(2, 'b'):[]	=> [(1, 'a), (2, 'b')]		-> lista de tuplas
+
+
+
+
+[1, 2, 3]:[6, 7, 8]:[]		=> [[1, 2, 3], [4, 5, 6]]
+	-> não faz concatenação
+	-> cria lista de listas
+
+"ufsc":"praia":[]	=> ["ufsc", "praia"]
+
+
+
+
+forma expliciata: [1, 2, 3, 4, ..., 10]
+forma implicita: [1..10]	=> [1, 2, 3, ..., 10]
+	-> ".." é como se fosse range em python
+	-> funciona por exemplo pra 'a'..'z' 
+
+	PA de 0 a 2 razão 2
+	[0, 2..20] => [0,2,4,6,...,20]
+
+	PA de 1 a 20 razão 3
+	[1, 4..20] => [1, 4, 7, ..., 19]
+
+	=> podem ser finitas
+		[1..100], [10, 20..100]
+		  ou infinitas
+		[1..], [10, 20..]
+
+=> forma genérica de representação de listats pra argumentos de funções
+	(a:b), onde a é o primeiro elemento da lista (cabeça da lista), e b é o resto da lista (cauda da lista)
+		=> b pode ser lista vazia (mas sempre é uma lista)
+		=> a é sempre um elemento
+
+cabeca :: [t] -> t
+cabeca (a:_) = a
+
+
+comprimento :: [Int] -> Int
+comprimento [] = 0
+comprimento (_:b) = 1 + (comprimento b)
+
+
+Igualdade entre duas listas:
+	igual :: [Int] -> [Int] -> Bool
+	igual [] [] = True
+	igual [] _ = False
+	igual _ [] = False
+	igual (a:b) (c:d) | (a == c) = igual b d
+			  | otherwise = False
+
+Dobrar valor dos elementos de uma lista
+dobro :: [Int] -> [Int]
+dobro [] = []
+dobro (a:b) = a * 2 : dobro b
+
+
+
+Ordenação de valores em uma lista
+ordenacao :: [Int] -> [Int]
+ordenacao [] = []
+-- adiciona cada elemento na lista ordenada
+ordenacao (a:b) = add a (ordenadao b)
+
+add :: Int -> [Int] -> [Int]
+add a [] = [a]
+add a (b:c) | (a <= b) = a : b : c
+	    | otherwise = b : (add a c)
+
+
+----------------
+Outros operadores
+=> concatenação de listas: ++
+	[1, 2, 3]++[4, 5] = [1, 2, 3, 4, 5]
+
+=> retorna um elemento na posicao do segundo elemento (ou qualquer): !!
+	[1, 2, 3, 4, 5]!!3	=> 4 (index 3)
+
+=> subtração de listas: \\ (import Data.List)	
+	[1, 2, 2, 3, 4, 5] \\[2, 3, 4]	=> [1, 2, 5]
+----------------
+
+
+----------------
+List comprehension
+-> definindo listas de forma matemática
+[x|x<-[1, 2, 3]]	=> [1, 2, 3]
+
+entre :: [Int] -> Int -> Int -> [Int]
+entre lista p q = [b | b <- lista, maiorQue b, menorQue b]   -- b = "pertence", satis
+	where maiorQue x = x > p
+	      menorQue x = x < q
+
+print(entre [1, 7, 8, 4, 5, 6, 7, 4, 12] 4 9])	=> retorna uma lista com todos números entre 4 e 9
+
+
+
+gerarPares :: [t] -> [u] -> [(t, u)]
+gerarPares l1 l2 = [(a, b) | a <- l1, b <- l2]
+
+putStrLn (show (gerarPares [1, 2, 3] [4, 5]))
+	=> retorna lista de duplas, combiandno todos elementos de [1, 2, 3] com todos de [4, 5], com 1, 2 e 3 sempre aparecendo na primeira posição da dupla
+----------------
+
+
+
+Definindo listas usando expressões lambda
+(\x->x) [1, 2, 3, 4]	=> [1, 2, 3, 4]
+
+Aplicando funções sobre listas
+
+map:retorna lista resultante
+map abs [-1, 2, -5, -8, 3]	=> [1, 2, 5, 8, 3]
+
+filter: aplica função sobre cada elemento e retorna os que o resultado da aplicação da função sobre o elemento seja verdadeiro
+filter odd [1, 2, 3, 4, 5, 6]	=> [1, 3, 5]
+
+
+filtrar :: (t -> Bool) -> [t] -> [t]        => esse parenteses é uma função que recebe algo e retorna Bool
+filtrar f [] = []
+filtrar f (a:b) | f a = a: (filtrar f b)    -- caso a passe pela função, coloca a no começo da lista e continua sobre b
+	        | otherwise = filtrar f b   -- caso a não passe, não a coloca na lista e continua iterando sobre b
+
+
+
+
+
+
+
