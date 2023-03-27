@@ -1,0 +1,9 @@
+Subsídios para refinamento de casos de uso
+
+
+
+- diagrama de atividades: detalhar comportamento do programa (tempo de execução)
+	-> alto ou baixo nível de abstração
+
+
+

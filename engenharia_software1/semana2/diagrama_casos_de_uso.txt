@@ -1,0 +1,121 @@
+Diagramas de Casos de Uso
+=> relaciona conjunto de situações de processamento do software
+	-> funcionalidades, o que faz
+		-> = casos de uso
+=> modelagem dinâmica do sistema
+=> representado por elipse
+
+
+
+- Finalidade: modelar funcionilidades do software (casos de uso)
+	-> O que o software faz
+-> modelar elementos externos que interagem com o software (atores)
+-> "o que o programa faz?" respondido por esse diagrama
+
+
+
+
+- Caso de uso
+-> funcionaliade que cumpre requisitos: 
+	-> completa (não uma fração) 
+	-> externamente perceptível (alguma evidência perceptível da sua execução, interação, criação de arquivo em pasta, ...), 
+=> exemplo: cada opção de menu de programa de banco/caixa bancário
+	-> transferência entre poupança, transferencia entre conta, extrato de conta, investimento, ...
+-> "uma das razões pra usar esse programa"
+	-> funcionalidade completa
+		-> não é completa: ler senha (é uma fração de funcionalidade)
+-> apenas a identificação da funcionalidade, sem referência de como é executada
+	-> "emissao de extrato de conta corrente" dentro de uma elipse
+	
+
+
+- Ator
+-> associado a noção que software interage com meio externo
+-> entidade externa que interage com ele (pessoa, equipamento, outro software)
+	-> usuário, hardware e software = elementos externos
+=> representação: bonequinho com nome do ator
+
+=> função: representa interação do programa com elemento externo
+	-> faz aprte do sistema (elemento interno ao programa)
+	-> modela a interface com cada elemento externo
+=> faz interface com elementos externos
+
+=> ator e código: ator é classe com estereótipo ator
+	-> classe que implementa interação (classe de interface)
+		-> se implementável em uma classe
+	-> fachada de subsistema de comunicação (interface complexa)
+		-> caso tenha diversas classes, mas faz interação atraveś de uma (interface/fachada)
+	
+=> pelo menos um ator (pra interagir com meio externo)
+=> mais de um ator: quando interação com meio externo pode acontecer de mais de uma forma
+	-> mais de uma interface = mais atores
+=> um ator é uma forma de interagir, com formas diferentes de interação, precisa de mais atores 
+-> ex: gerencia de mercado:
+	-> ator modelando interface para caixa (todos os que trabalham no caixa são um ator apenas)
+	-> ator pra quem trabalha em estoque 
+		-> esses usuários trabalham em coisas diferentes, interfaces diferentes para eles
+-> ex: jogo da velha
+	-> dois jogadores usam a mesma implementação de interface -> 1 ator
+
+=> correspondência entre atores e entidades externas:
+	-> um ator pra uma entidade externa: "editor de texto pra um usuário"
+	-> um ator pra várias entidades externas: "usuários de jogo da velha"
+	-> vários atores pra uma entidade externa: "empresa que mesma pessoa atua como caixa e controle de estoque" => troca de função, vê outra interface e atua diferentemente
+
+
+
+
+- Associação entre ator e caso de uso
+-> participação da entidade externa modelada pelo ator em um caso de uso
+
+-> ator sempre associado a pelo menos um caso de uso sempre
+-> caso de uso, mesmo que indiretamente, estará associado a um ator
+
+-> ligados por uma linha (sem seta)
+-> multiplicidade pode ser incluída, mas raramente usada
+-> pode ter esterótipo
+
+-> quantidade de atores associados a caso de uso
+	-> um ator associado a um caso de uso (um elemento externo atua no caso)
+	-> mais de um ator associado a um caso de uso (mais de uma entidade externa participa)
+		-> conjuntamente ou alternativa (não dito no diagrama)
+
+
+
+- Formas de participação do ator
+-> participação ativa: "jogador indica posição que quer no jogo"	 
+-> participação passva: "tela que informa horários de voo em aeroporto pra passageiros"
+	-> tem uma interface, há troca de informações
+-> "devolver dvd em locadora e o funcionário registra": apenas um ator (funcionarário), pois apenas ele interagiu com o programa, quem alugou não interage de forma nenhuma (não ve nada na tela, não digita nada, ...)
+
+
+
+- Associação entre casos de uso
+
+=> extensão: um dos casos de uso tem seu comportamento estendido pelo comportamente definido em outro
+	-> "emissao de extrato" com "verificação de situação de conta de cliente"
+	-> representação: linha pontilhada com seta (>) e <<extend>>
+
+=> inclusão: parte do comportamento inerente a um caso de uso está definida em outro caso de uso
+	-> caso de uso contém o comportamente definido em outro caso de uso
+	-> evitar repetições na modelagem
+	-> representação: linha pontilhada com seta (>) e <<include>>
+	
+====> inclusão denota obrigatoriedade (quando caso principal ocorre, auxiliar tampém ocoree); extensão denota opcionalidade (pode ou não ocorrer)
+	-> include: seta aponta para o caso auxiliar  (principal inclui o auxiliar)
+	-> extend : seta aponta para o caso principal (auxiliar estende o principal, o aponta)
+
+=> generalização: especialização de caso de uso
+	-> torna um caso específico (como no diagrama de classes, seta branca
+	-> ator se liga no caso genérico (nele está ligado os casos específicos)
+	 
+
+
+- Associação entre atores
+-> associação de generealização: dois atores envolvidos em uma generalização, um é genérico e outro é especialização
+	-> "ator_funcionário" como geral e especializações "ator_gerente" e "ator_balconista"
+	-> considerando ser uma classe, corresponde a pŕopria herança no código
+
+
+
+
