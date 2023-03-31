@@ -1,0 +1,42 @@
+-> diagrama de atividades modificado: sem possibilidade de fluxo de objetos
+	-> troca ações e atividades por interações modeladas em diagramas de interação
+		-> interações modeladas por objetos interagindo (modelagem dinâmica)
+			-> sequencia, comunicação, temporização e o próprio de visão geral
+			
+-> a partir de interações previamente modeladas, estabelece sequência em que elas podem ocorrer
+
+
+=> modela as sequências possíveis de ocorrência das interações identificadas
+
+=> exemplo de utilidade do diagrama de visão geral de interação: 
+	-> formalizar as seq possíveis de ocorrência dos casos de uso de uma modelagem
+		-> casos de uso sejam refinidaso em diagramas de interação
+		-> diagrama de visão geral de interação não referenciaria os casos de uso, mas as modelagens de interação
+		
+
+- Elementos sintáticos: mesmos do de atividades exceto
+	-> ausência de todos elementos isntáticos que se referem a fluxo de objetos
+	-> troca ações e atividades por interações
+	
+
+- Interações no diag de visão geral de interação
+-> explicitamente inserida no diag
+	-> colocar conteúdo todo do diagrama de interação como nodo do de visão geral de interação
+	-> dentro de uma moldura com cabeçalho sd (ou interaction)	
+-> referência a uma interação modelada em outro diagrama
+	-> nodo corresponde a uma elemento "uso de interação" que referencia um diagram de interação
+		-> qualquer um dos 4
+	-> identificados por "ref" no canto superior esquerdo
+
+
+-> cuidar com legibilidade no diagrama
+	-> quando for interações complexas, melhor usar referência
+	-> incluir diagramas completos é viável quando modelagem é muito simples
+
+
+- Conjunto de restrições pra construção de diagramas de interação
+-> ao inves de ações e atividades, nodos executáveis correspondem a interações
+-> não é tratado o fluxo de objetos
+-> fluxo de controle e nodos de controle são exatamente os definidos para o diagrama de atividades
+-> nodos agrupadores do diag de atividades não são usados
+-> precisa imbutir convergências e ramificações

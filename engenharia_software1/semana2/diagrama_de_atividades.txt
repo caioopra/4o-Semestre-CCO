@@ -1,5 +1,5 @@
 Subsídios para refinamento de casos de uso
-
+----------------------------------------------
 
 
 - diagrama de atividades: detalhar comportamento do programa (tempo de execução)
@@ -7,3 +7,54 @@ Subsídios para refinamento de casos de uso
 
 
 
+- Finalidade: detalhar comportamentos em geral
+	-> modela algoritmo
+	
+	-> refinar caso de uso (nesse caso)	*
+	-> dinâmica do sistema em geral
+	-> descrever algoritmo de método de classe (nesse caso da matéria) *
+	-> descrever existência de objeto (diag de máquina de estados)
+	
+
+- Principais elementos: atividade, ação, fluxo de controle
+
+=> ação: unidade de modelagem de comportamento (atômica, não admite particionamento e nem na execução)
+	-> representação: retângulo arredondado com identifcação da ação
+	
+=> atividade: unidade de modelagem de comportamento (não atômica, pode ser particionada)
+	-> pode ser composta por ações ou atividades (pode ser mais complexo)
+	-> representação: retângulo de cantos arredondas envolvendo demais
+					  ou identificado apenas com o nome da atividade (ícone "forkado")
+	
+	=> pré e pós-condições: 
+		usando notas ligadas à ação com tracejado, <<localPrecondition>> ou <<localPostcondition>> 
+		dentro da atividade " <<precondition>> restrição " e "<<postcondition>> restrição "
+		
+		-> pré-condição é algo que deve ser verdade pra que possa ocorrer
+		
+=> fluxo de controle: "seta" apontanod de um procedmento para o seguinte
+	-> modela fluxo de controle do programa
+	-> passagem de controle da execução de ação/atividade para outra
+	-> sequências possíveis de execução das atividaes e ações 
+	-> representação: ->
+
+
+- Nodo inicial e final: 
+	-> inicial: círculo preenchido
+	-> final: círculo preenchido circundado por outro círculo
+
+- Nodos decisão e fusão:
+	-> decisão: permite fluxos de controle alternativos condicionados por expressões booleanas
+		-> if-else e switch
+		-> representação: losango com uma entrada e "n" saídas, cada uma associada a uma condição (cada uma com condição)
+			-> seta chegando e as demais saindo (->)
+	
+	-> fusão: funde conjunto de fluxos em um único (organização de modelagem)
+	
+	-> podem ser um único elemento 
+	
+- Nodos fork e join -> concorrência (fork pra controle concorrente e join pra sincronização)
+
+
+
+- Partição de atividade: dividir atividades e ações de diagrama em gurpos (qualquer critério)

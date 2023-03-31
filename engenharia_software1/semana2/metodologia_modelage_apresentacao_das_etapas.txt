@@ -1,0 +1,45 @@
+8 etapas e sequência
+
+
+Etapa 1 - Modelagem estrutural e dinâmica em alto nível de abstração
+	-> diagrama de classes
+	-> diagrama de casos de uso (dinamica)
+	-> diagrama de visão geral de interação (dinamica)
+	
+
+Etapa 2 - Refinamento estrutural 
+	-> identificação dos atributos das classes
+	
+
+Etapa 3 - Refinamento de casos de uso
+	-> detalhar casos de uso pra identificar métodos das classes (usando diagrama de atividades, comunicação e sequência)
+
+
+Etapa 4 - Modelagem de estados associados a classes
+	-> diagrama de máquina de estados, executada para classes com comportamento dinâmico relevante
+	
+	
+Etapa 5 - Introdução de elementos do domínio da solução computacional
+	-> extensão da modelagem produzida com foco no domínio do problmea, incluindo os de solução computacional
+	-> início da etapa de projeto
+	-> "repetição das 4 primeiras e com foco na solução computacional"
+	
+
+Etapa 6 - Destaque de situações especiais na modelagem
+	-> tratamento de situações específicas de certos sistemas computacionais
+	-> diagrama de temporização, de máquina de estaods, utilização, de  objetos e de estrutura composta
+	
+
+Etapa 7 - Modelagem de algoritmos de métodos
+	-> especificação dos métodos em diagramas de atividades
+
+
+Etapa 8 - Geração de código e desenvolvimento iterativo
+	-> codificar e finalizar o desenvolvimento
+
+
+
+=> pode transitar entre as etapas e não necessariamente nessa ordem (4 primeiras)
+	-> início deve ser com etapa 1 (estrutural e diâmica em alto nível)
+	
+
