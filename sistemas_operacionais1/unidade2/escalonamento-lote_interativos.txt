@@ -1,0 +1,89 @@
+- Quando escalonamento é necessário?
+	-> ao criar processo
+	-> ao terminar processo (qual processo pronto escolher?)
+	-> passar para bloqueado (qual escolher)
+	-> interrupção
+	
+- Tipos de algoritmos:
+	-> não preemptivos (processo executa até que seja bloqueado ou termine)
+	-> preemptivos (tempo máx. definido; suspenso e escalonador escolher outro; interrupção de relógio)
+
+- Escalonamento e tipos de sistema
+	-> sistemas em lote: submissão de jobs pra executar, não aguardam resposta rápida, escalonadores não preemprivos em geral aceitáveis
+	-> sistemas interativos: usuários interagem diretamente com sistema, executando comandos e esperando resultaodos, preemptivos essenciais, evitam que processos de apossem da CPU
+
+- Objetivos dos alg. de escalonamento
+	-> justiça (dar porção justa da CPU aos processos)
+	-> eficiência (manter CPU ocupada sempre quando tiver demanada)
+	-> vazão (throughput) (maximizar número de jobs por unidade de tempo)
+	-> tempo de retorno (turnaround time) (minimizar tempo entre submissão e término de job; importante quando em lote)
+	-> tempo de resposta (minimzar tempo entre emissão de comando e obtenção do resultado; interativos)
+	
+	-> nem sempre consegue atingir todos
+	
+
+- Escalonamento em sistemas em lote
+=> First come, first served (FCFS): processos executados na ordem que chegam na fila de prontos
+	-> processo libera processador quando é bloqueado ou quando termina
+	-> ao retornar de estado bloqueado, é inserido no fim da fila
+	-> tempo médio considera: TRx (tempo de retorno do processo x); TMR = soma dos tempos até terminarem  / qtd
+	
+	-> implementação: única fila de processos prontos na ordem de chegada (FIFO); processos inseridos no fim da fila e removidos da fila
+	-> vantagens: fácil implementação e gerenciamento
+	-> desvantagens: não permite preempção; processos muito longos fazem os demais esperarem muito tempo até ganhar processador
+
+=> Shortest job first (SJF): mantém processos em uma lista ordenada na ordem crescente de duração dos processos
+	-> processo escolhido sempre é o primeiro da lista
+	
+	-> minimiza tempod de retorno
+	
+	-> implementação: única lista de processos prontos ordenada na ordem crescente do tempo de duração dos procesos; processos removidos do início da lista
+	-> vantagens: menor tempo médio de retorno; pode ser preemptivo (próximo de menor tempo restante (shortest Remaining Time Next))
+	-> desvantanges: precisa prever (técnicas de aproximação); pode haver postergação indefinida
+
+
+- Escalonamento em sistemas interativos
+=> Round-robin: usa fila (FIFO) pra controlar ordem de execução; cada processo atribuído um intervalo de tempo (quantum) que ele pode executar
+	-> processo executa até que:
+		quantum esgote
+		seja bloqueado
+	-> inserido no fim da fila quando retorna do estado bloqueado
+	-> precisa de relógio de tempo real (hardware usado pra delimitar intervalos de tempo por interrupções)
+	
+	-> implementação: lista circular; ponteiro para processo atual (em exec)
+	-> vantagens: ilusão de paralelismo, minimiza tempo de resposta
+	-> desvantagens: comom escolher quantum? 
+		se pequeno: tempo desperdiçado com chaveamento de contexto
+		se grande : perde ilusão de paralelismo (resposta lenta às requisições interativas curtas)
+
+=> escalonamento por prioridades: diferentes prioridades aos processos, definindo qual será executado
+	-> lista ordenada pela prioridade (FIFO em caso de empate)
+	
+	-> propriedades estáticas: prioridade de um processo não muda durante seu ciclo de vida
+	-> propriedades dinâmicas: prioridade de processo é modificada dinamicamente
+		-> exemplo: os que faz muito IO, podeo aumentar sua prioridade pra iniciar requisição de IO e esperarem no estado bloqueado enquanto outros são executados
+		
+	-> implementação: lista de processos ordenada pela prioridade; remoção do início
+	-> vantagens: permite atender processos importantes primeiros; pode usar preempção (processo em exec na CPU pode ser preemtado quando outro de mais prioridade chega na fila de prontos)
+	-> desvantagens: postergação indefinida (baixa prioridae podem não ser exec)
+		-> solução: algoritmo de envelhecimento	(processos que não ganham processador tem prioridade aumentada gradativamente, em um momento, ele terá alta prioridade e executa)
+		
+=> escalonamento com filas múltiplas: diversas filas de processos no estado pronto (cada processo associadao a uma fila)
+	-> cada fila pode usar um mecanismo próprio de escalonamento
+	-> cada fila com prioridade associada
+	
+	=> duas alternativas:
+		-> sem realimentação: uma vez associado a uma fila, sempre permanece nela
+		-> com realimentação: podem ser transferidos de fila de acordo com critério
+	
+	=> exemplo:
+		diversas filas: Q0 ... Qn
+		prioridade: diminui em direção à fila Qn (Q0 mais alta e Qn mais baixa)
+		quantum   : aumenta em direção à fila Qn (Q0 menor quantum e Qn com maior)
+		-> processos em Qi só podem ser escalonaod sse não tiver processos nas filas com maior prioridade (Qi-1 ... Q0)
+		-> esgotando quantum na fila Qi, vai pra fila Qi+1 (menor prioridade, mas maior quantum)
+		-> quando bloqueado, deixa a fila Qi (retornando, vai pra Qi+1)
+	
+	-> vantagens (do ex): processos que usam muito CPU tendem a ter menos prioridade mas com quantum maior (menor custo de chaveamento); processos interativos pequenos que fazem muito IO são favorecidos, reduzindo tempo médio de resposta
+	-> problema: postergação indefinida; podem fica em filas de baixa prioridade por conta de  outros em filas de maior prioridade; resolvido com aging pra mover gradativamente para filas de maior prioridade
+	

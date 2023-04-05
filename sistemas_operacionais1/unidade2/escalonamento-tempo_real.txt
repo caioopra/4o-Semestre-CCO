@@ -1,0 +1,102 @@
+STRs (Sistemas de tempo real): classe de sistemas computacionais que exigem corretudo lógica e temporal
+-> restrições temporais: tarefas devem cumprir suas computações dentro de determinado tempo)
+
+aplicações <-> interface hardware/middleware <-> sensores  <-> ambiente
+											 <-> autadores <-> ambiente
+											 
+- Tipos de sistema de tempo real
+-> não críticos (soft real time systems): consequências de falha temporal são da mesmsa ordem de grandeza que benefícios do sistema em operação normal
+-> críticos (hard real time systems): consequências de ao menos uma falha temporam excedem em muito benefícios normais do sistema em operação normal (falhas catastróficas)
+
+- Tarefas e restrições
+-> tarefas de tempo real (tarefas TR): unidades de processamento que concorrem a um ou mais recursos computacionais de um sist.
+-> uma aplicação de TR é composta de várias tarefas TR: modelo de tarefas define restrições temporais, as relações de precedência e exclusão das tarefas que compõe o modelo
+
+-> restrições temporais: devem ser respeitadas para que se tenha comportamento temporal necessário
+	-> tarefas TR sujeitas a prazos (deadlines)
+	-> a princípio uma tarefa TR deve ser concluída antes de seu deadline
+
+
+- Modelo de tarefas
+-> tipos de tarefas TR: 
+	tarefas críticas: falhas catrastróficas no sist/ambiente
+	tarefas não críticas: diminui desempenho/precisão sem custo muito significativo
+	
+-> regularidade das ativações de tarefas TR: periódicas ou aperiódicas
+
+-> tarefas TR periódicas: quando ativações de processamento da tarefa ocorrem em intervalo regular (período)
+	-> ativações de uma tarefa periódica formam o conjunto de diferentes instâncias de uma tarefa
+	-> usualmente, a primeira ativação ocorre no início da execução (t=0)
+-> tarefas TR aperiódicas: quando a ativação de processamento de uma tarefa responde a eventos internos ou externos definindo uma característica aleatória nessas ativações
+	-> esporádicas: subconjunto, com restrição de intervalo mínimo conhecido entre duas ativações consecutivas
+
+
+periódicas -> regularidade <-> previsibilidade -> hard deadlines
+aperiódicas -> irregularidade <-> imprevisibilidade -> soft deadlines
+
+-> tempo de computação (Ci): tempo necessário pra execução completa da tarefa
+-> tempo de início (st): instante de início do processamento da tarefa em uma ativação
+-> tempo de término (c): instante de tempo em que sem completa a execução da tarefa na ativação
+
+-> tempo de chegada (a): instante de tempo em que o escalonador toma conhecimento de uma ativação da tarefa
+	-> tarefas periódicas: tempo de chegada coincide sempre com o início do período de ativação
+	-> tarefas aperiódicas: tempo de chegada é o instante de tempo da requisição do processamento aperiódico
+-> tempo de liberação (r): instante de inclusão na fila de tarefas prontas para executar
+	-> pode ou não coincidir com tempo de chegada
+-> release jitter (Ji): quando tarefa é retardada na sua liberação; Ji de uma tarefa Ti é a máxima variação dos tempos de liberação das instâncias de Ti
+
+- Tarefas aperiódicas
+-> comportamento temporal de uma tarefa TR periódica Ti pode ser descrito pela quádrupla (Ji, Ci, Pi, Di)
+	-> Ci: tempo de computação
+	-> Pi: período
+	-> Di: deadline
+	-> Ji: release  jitter
+		-> Ji e Di grandezas relativas (intervalos), medidas a partir do início do período Pi
+
+- Tarefas esporádicas
+-> tripla (Ci, Di, min_i)
+	-> Ci: tempo de computação
+	-> Di: deadline relativo, medido a partir do instante de requisição do processamento aperiódico
+	-> min_i: intervalo mínimo entre duas requisições consecutivas da tarefa esporádica
+	
+	
+- Escalonamento
+-> classificações:
+	preemptivos x não preemptivos
+	estáticos   x dinamicos
+	offline     x online
+
+-> problemad de escalonamento de TR envolve:
+	conjunto de processadores
+	conjunto de recursos compartilhados
+	conjunto de tarefas específicas segudno um modelo que define suas restrições temporais
+-> carga computacional: somatório dos tempos de computação das tarefas
+
+- Tipos de carga de tarefas
+	-> estática (modelada através de tarefas periódicas e esporádicas)
+	-> dinâmica (modelada usando tarefas aperiódicas)
+
+- Escalonamento de tempo real
+-> dividido em duas etapas:
+	1. teste de escalonabilidade: det. se as restrições temporais de um conjunto de tarefas serão atendidas considerando os critérios de ordenação def. no algo. de escalonamento
+	2. escalonamento: própria execução das tarefas seguindo o escalonamento
+
+
+=> escalonamento para tarefas periódicas: RM e EDF
+- Rate Monotonic (RM)
+	-> classificação: preemptivo, estático online
+	-> prioridade determinada pelo período (Pi): quanto menor o período, maior prioridade
+	-> premissas:
+		-> tarefas periódicas e independentes
+		-> Di = Pi (deadline = período)
+		-> Ci conhecido e constante (tempo de computação)
+		-> tempo de chaveamento entre tarefas nulo
+	
+- Earliest Deadline First (EDF)
+	-> classificação: preemptivo, dinâmico e online
+	-> prioridade determinada pelo deadline absoluto (quanto menor deadline absoluto, mais prioridade)
+	-> premissas:
+		-> tarefas periódicas e independentes
+		-> Di = Pi (deadline = período)
+		-> Ci conhecido e constante (tempo de computação)
+		-> tempo de chaveamento entre tarefas nulo
