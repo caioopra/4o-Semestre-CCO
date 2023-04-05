@@ -1,0 +1,77 @@
+- Usando "type"
+-> sinônimo para um tipo já existente (renomeia o tipo)
+
+	type Nome = String
+	type Idade = Int
+	type Linguagem = String
+	type Pessoa = (Nome, Idade, Linguagem)
+	
+	------------------
+	
+	pessoa :: Int -> Pessoa
+	pessoa 1 = ("Bob", 25, "Haskell")
+	pessoa 2 = ("Tom", 22, "LISTP")
+	
+	getNome :: Pessoa -> Nome
+	getNome (n, _, _) = n
+	
+	main = do
+		putStrLN (show (pessoa 2))
+		putStrLN ( show (getNome (pessoa 1) )
+		-- construindo uma pessoa
+		putStrLn ( show (getNome ("bin", 25, "scheme")))
+		
+	------------------
+	
+
+------------------
+- Usando "newtype" -> PESQUISAR
+------------------
+
+
+------------------
+- Usando "data" 
+-> cria um tipo novo
+-> "struct" de C (parecido)
+
+	data Forma = Circulo Float | Retangulo Float Float
+	
+	-> "Forma" é o tipo, com dois valores possíveis
+
+	------------------
+	area :: Forma -> Float
+	area (Circulo r) = pi * r * r
+	area (Retangulo b a) = b * a
+	
+	minhaForma :: Forma
+	minhaForma = (Retangulo 4 6)  -- "template"
+	
+	main = do
+		putStrLn ( show (area (Circulo 6.4)) )
+ 		putStrLn ( show (area (Retangulo 4 5)) )
+		putStrLn ( show (area minaForma)) )
+		
+	------------------
+
+	data Resposta a = Sim a | Nao a
+	-> "Resposta" é o tipo
+	-> "a" é uma variável de tipo, pode decidir que tipo de "Resposta Sim" ou "Nao) queremos
+		-> Sim Int, Sim String, ...
+		-> "template", estrutura abstrata ("template C++")
+	-> depois de "=" tem os diversos valores que esse tipo de Resposta pode ter
+	
+	getRespostaInt :: Resposta Int -> String
+	getRespostaInt (Sim x) | x >= 80 = "muito bom"
+			       | otherwise = "bom"
+	getRespostaInt (Nao x) | x >= 80 = "muito ruim"
+			       | otherwise = "ruim"
+			       
+	getRespostaStr :: Resposta String -> String
+	getRespostaStr (Sim x) = x
+	getRespostaStr (Nao x) = x
+	
+	-> Haskell não aceita por padrão sobrecarga de funções
+	------------------
+	
+-> construindo árvore binária
+

@@ -103,7 +103,7 @@ entre lista p q = [b | b <- lista, maiorQue b, menorQue b]   -- b = "pertence", 
 	where maiorQue x = x > p
 	      menorQue x = x < q
 
-print(entre [1, 7, 8, 4, 5, 6, 7, 4, 12] 4 9])	=> retorna uma lista com todos números entre 4 e 9
+print(entre [1, 7, 8, 4, 5, 6, 7, 4, 12] 4 9)	=> retorna uma lista com todos números entre 4 e 9
 
 
 
