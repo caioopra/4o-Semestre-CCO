@@ -1,0 +1,92 @@
+=> classes servem mais para definir métodos para um certo tipo
+=> definem métodos sobre tipos
+
+=> não tem noção de objeto e estado
+
+=> principais classes predefinidas no módulo Prelude: Eq, Ord, Enum, Read, Swow, Functor, Monad e Bounded
+=> classes numéricas: Num, Integral, Real, Fractional, Floating, RealFrac, RealFloat, ...
+
+
+
+-------------
+Polimorfismo paramétrico: tipos genéricos
+
+	gerarPares :: [t] -> [u] -> [(t, u)]
+	gerarPares l1 l2 = [(a, b) | a<-l1, b <- l2]
+	
+	=> t e u podem ser qualquer tipo compatível com as operações realizadas	
+		-> deve garantir que os tipos sejam compatíveis
+	
+Polimorfismo ad-hoc (coerção/coercion): tipos são convertidos de forma implícita (inteiros e reais em soma, por exemplo)
+
+	soma :: Float -> Float -> Float
+	soma x y = x + 1 + 1
+	... print (soma 21 10)
+	
+Polimorfismo ad-hoc (sobrecarga/overloading): métodos com mesmo nome/assinatura, mas varia tipo e/ou quantidade de parametros e/ou retorno (Haskell não suporta!!!)
+	-> precisa ser feito em classes
+
+
+--------------------
+Exemplo de classe
+
+	class Eq a where
+		(==) :: a -> a -> Bool
+		
+	=> classe Eq e o tipo "a" que a implementar, deve implementar aqueles métodos
+	=> existe um tipo "a" e implementa essa classe Eq
+	
+	instance Eq Integer where
+		x == y = x 'integerEq' y
+	=> instancia da classe Eq (a = Integer)
+	=> "integerEq" é implementada pela lib padrão do Haskell
+	
+	------
+	
+	class Eq a where
+		(==), (/=) :: a -> a -> Bool
+		x /= y = not (x == y)
+	
+	=> implementamos o método x /= y dentro da própria classe (ele faz not da igualdade)
+	
+	
+Exmplo de classe com Herança
+	class (Eq a) => Ord a where
+		(<), (<=), (>=), (>) :: a -> a -> Bool
+		max, min :: a -> a -> a
+	
+		=> superclasse de Ord (Ord é uma subclasse de Eq)
+		=> qualquer tipo instancia de Ord deve ser também de Eq
+		=> classe relativa a tipos de dados totalmente ordenavel 
+		
+Exemplo de classe com Herança Múltipla
+	class (Num a, Ord a) => Real a where
+		toRational :: a -> Rational
+
+	
+Tipos de Dados
+-> Bool (False | True)
+-> Char (16 bits de representação Unicode)
+-> String: [Char] e construtor nulo é uma lista vazia []
+-> Int: inteiros de -2^29 a 2^29-1
+-> Integer: inteiros de precisão arbitrária (até possuir espaço de memória)
+-> Float: número real de precisão simples 32 bits
+-> Double: real precisação dupla 64 bits
+
+-> algébricos: coleção de valores organizados (vetores, matriz, n-uplas -> ordenadas e não ordenadas)
+-> listas: tipos algébricos (construtores : e [])
+-> tuplas: tipos algébricos (construturos , e ()
+
+Funções, Maybe, Either, Ordering, Functor e () são tipos abstratos de dados
+	-> tipo ou classe cujo comportamento é definido por conjunto de valores e um conjunto de operações
+	-> mensão sobre quais operações são realizadas, mas não como elas serão implementadas
+
+	data Maybe a = Nothing | Just a
+		deriving (Eq, Ord, Read, Show)
+	
+	=> tipo de dados para Maybe aberto; usuário informa ("a")
+	
+	
+	
+	
+	
