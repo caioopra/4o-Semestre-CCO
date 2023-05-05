@@ -1,0 +1,39 @@
+-> modulos em haskell contém:
+	-> declarações de precedência (fixity)
+	-> declarações de tipos
+	-> declarações de classes e instâncias delas
+	-> definições de tipos
+	-> definições de funções
+-> vantagens: reuso de código, facilitar organização e manutenção
+
+
+=> fatorial (fatorial.hs)
+	module Fatorial (fatorial) where
+
+	-- recebe um int e retorna Int
+	fatorial :: Int -> Int
+	fatorial 0 = 1
+	fatorial n = n * fatorial (n-1)
+
+	=> módulo Fatorial, que exporta fatorial
+	=> pode exportar uma ou mais funções
+
+=> usando Fatorial (principal.hs):
+	import Fatorial
+
+	main = do
+		nString <- getLine
+		let n = (read nString :: Int)
+		print (fatorial n)
+
+	=> compilação:
+		ghc -o executavel fatorial.hs principal.hs
+		ghc --make principal.hs
+		-> nesse caso, nome dos módulos e dos .hs devem ser iguais
+
+
+=> pode ignorar funcionalidades do módulo que está importando usando "hidding"
+	import Prelude hiding (max, toUpper, isDigit)
+=> pode decidie quais funcionalidades importar informando cada uma delas no import
+	import Pilha (Pilha (Stack), emptyStack, push, pop, top)
+
