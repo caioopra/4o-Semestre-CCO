@@ -1,0 +1,75 @@
+compilar: clisp -c arquivo.lips
+	-> tentar se "-c"
+executar clisp nome.fas
+
+clisp => executar em tempo real (intepretar/executar código lisp)
+
+
+-----------------------
+
+Considerado "branco": espaços, <cr>, <lf>, tabulações e comentários
+	=> identação não é importante pra sintaxe da linguagem!
+
+Comentário de linha: ;
+Comentário de bloco: #| |#
+
+-------------
+
+=> paranteses são obrigatórios
+
+-------------
+
+Operadores
+- aritméticos: +, -, *, /, mod, expt
+- lógicos: or, and, not
+- relacionais: =, /= ("diferente"), >, >=, <=, <, eq (para símbolos)
+
+Notação pré-fixada
+-> (+ 5 2) => 5 + 2
+-> (- (+ 5 2) 3) = (5+2)-3
+-> (/ (- (5 2) 3) 2) => ((5+2) -3)/2
+
+=> operadores sãõ funções ("está sempre fazendo chamadas de funções e passando os argumentos")
+
+----------------
+
+Entrada e saída de dados
+
+- entrada:
+	(read) : lê até encontrar espaço (ler palavra)
+	(read-char) : lê apenas um caractér
+	(read-line) : lê até encontrar quebra de linha
+
+- saída:
+	(write-line x) : imrpime e quebra linha
+	(write x) : imprime e não quebra
+
+--------------
+
+Valores lógicos:
+	T (True)
+	NIL (False)
+
+-------------
+
+Funções básicas
+-> converter x para string (para imprimir)
+	(write-to-string x)
+
+-> concatenar sequênias (Strings, vetores, listas)
+	(concatenate 'string "ufsc " "paradigmas " "hoje")
+	(concatenate 'list '(1 2 3) '(4 5) "abc")	-> string == lista de caractéres
+	(concatenate 'vector '(1 2 3) '(4 5) "abc")	-> vector != lista
+	(concatenate 'string "Resultado: " (fatorial x))	-> concatenar string com resultado
+
+-> atribuição ("variável", pode usar globalmente, ...):
+	(setq z (read))
+	(setq z (fatorial x))
+	=> Não tem monads em LISP!
+
+-> raiz quadrada:
+	(sqrt x)
+
+
+--------------
+
