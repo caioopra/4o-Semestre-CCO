@@ -1,0 +1,7 @@
+swipl -o exec -c source.pl
+
+fazendo consultas:
+?- relacao(...).
+
+-> continuar a gerar:    ;
+-> parar de pesquisar:   .

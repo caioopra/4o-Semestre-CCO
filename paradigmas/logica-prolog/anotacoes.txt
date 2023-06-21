@@ -1,0 +1,124 @@
+- Lógica e declarativa
+
+- conceitos fundamentais: unificação, recursão e backtracking
+
+
+- $ swipl
+    => nomePrograma (sem .pl)
+- $ swipl -s programa.pl
+- $ swipl -o exec -c arquivo.pl
+
+Lógica
+- negação (NOT)
+- conjunção (AND): ^
+- disjunção (OR): V
+- ou exclusivo (XOR)
+- implicação (se-então  ): =>
+- bi-implicação (SSE)
+
+Cláusuloa: disjunção de literais (vários ORs em vários literais)
+    p V not Q1 V Q2 V not Q3 V Q4 ...
+Cláusulas de Horn: disjunção de literais com no máximo um positivo
+    p V not Q V not Q2 V ... V not Qn
+
+    equivalente a 
+        p <= Q1 ^ Q2 ^ Q3 ... ^ qn
+    em Prolog:
+        p :- q1, q2, q3, ..., qn
+
+Forma normal conjuntiva de cláusulas:
+    q1 V q2 V not q3 V q4) ^ (q3 V q4 V not Q5 V not Q6) ^ ...
+
+
+
+Progranação declarativa: não especifica ordem que coisas acontecem, dizendo o problema e deixa o sistema da ling. fazer
+    -> declara meta para ser atingida e sistema do Prolog trabalha pra atingir
+
+
+- aplicações: banco de dados inteligente (equivalente/melhor que SQL), sistemas especialistas, processamento de ling natural, especificação de linguagens, machine learning, planning (muito usado em prog. orientado a agentes também), raciocĩnio automatizado, resolução de problemas (como resolver jogo)
+
+
+----------------
+
+Compilando o código:
+    swipl -o executavel -c hello.pl
+Fazer consultas não usa a compilação, usa mais o terminal do prolog
+    swipl
+    - carregar arquivo prolog nele: ['/home/path/to/file.pl']
+
+
+- não demanda identação;
+    são considerados brancos: espaços, tab, quebra de linha, comentários
+
+- comentário: %
+  comentário em bloco: /* */
+
+
+
+mulher(pam).
+mulher(liz).
+homem(bob).
+homem(tom).
+genitor(pam, tom).  % pam é genitor de tom
+genitor(bob, tom).
+genitro(tom, liz).
+
+- predicados/functors: identificadores de relacionamentos
+- átomos: identificadores de objetos
+    => ambos devem começar com letra minúscula
+- aridade: número de parâmetros que tem em cada functor
+
+
+
+Regras:   cabeça :- corpo
+
+    pai(X, Y) :- genitor(X, Y), homem(X)            % "," = e
+    mae(X, Y) :- genitor(X, Y), mulher(X)           $ ";" = ou
+
+and = ,
+or  = ;
+not = not
+if  = :-
+palavras iniciads em maiúsculo são variáveis (_ varíavel anpnima, que unifica com qualquer coisa)
+
+
+
+Consultas: "perguntas" feitas sobre relacionamentos entre objetos e propriedades de objetos (símbolo ?- aparece no terminal, esperando entrada)
+    - trace. antes de começar consulta para ver passo a passo
+    - notrace. para terminar exec. passo a passo
+
+?- pai(X, liz)   % quem é o pai de liz?
+X = tom.
+
+?- pai(X, Y)
+X = tom,
+Y = bob ;
+X = tom,
+Y = liz ;
+X = bob,
+Y = ana ;   % quando coloca ; ele procura outra solução
+X = bob,
+Y = pat ;   % quando coloca e não tem mais, dá false
+false.
+
+
+slide18
+-> ordem que coloca a especificação é irrelevante (Só importa quando usar variáveis)
+
+
+
+slide22:
+    construtor de segmentos de reta
+
+
+slide 24
+
+
+== e = não resolve/avalia expressões aritméticas (5 = 3+2 e 5 == 3+2 resulta em false)
+X = 3+2 -> vai ser 3+2 o valor dentro dele, sem resolver para 5 o valor
+
+is só avalia no lado direito (do lado esquerdo não avalia/resolve)
+3+2 is 3 + 2 -> dá false (compara 3+2 com 5)
+
+=:= : igualdade aritmética, resolve dos dois lados
+

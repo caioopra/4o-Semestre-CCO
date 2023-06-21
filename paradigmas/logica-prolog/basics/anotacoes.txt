@@ -1,0 +1,73 @@
+Ariméticos
++, -, *, /, mod, ^, sqrt
+
+
+Lógicos
+, (and/conjunção)
+; (or /disjunção)
+not (not)
+
+
+Operações e funções
+=:= (igualdade aritmética)     =/= (desigualdade aritmética)
+>, >=, <, <=
+== (identidade de termos)      \== (não identidade de termos)
+= (unificação)     \= (não unificação)
+is (unificação)
+
+    'a' == a    [true]
+     X == a     [false]
+     X = a      [X = a]
+     3 = 3      [true]
+    'a' = a     [true]
+    nome(maior) = nome(X)    [X = maior]
+     nome(mario) = nome(mario)  [true]
+     nome(mario) == nome(mario)  [true]
+    
+-> = e == não avalian expressão, "is" avalia a direita (usado com uma variável no lado esquerdo)
+  =:= avalia expressão dos dois lados
+
+    5 =:= 3 + 2    [true]
+    5 == 3 + 2     [false]
+    5 = 3 + 2      [false]
+    5 is 3 + 2     [true]
+    X = 3 + 2      [X = 3 + 2]
+    x is 3 + 2     [X = 5]
+    3 + 2 = 3+2  e   3 + 2 == 3+2   [true]
+    3+2 =:= 3 + 2   [true]
+
+
+Funções
+- pode-se especificar função "max" como regra por predicado de aridade 3 max(X, Y, Max), onde Max vai armazenar o maior entre X e Y
+    max(X, Y, X) :- X >= Y.
+    max(X, Y, Y) :- Y > X.
+    -> X é o máximo se X maior/igual a Y e Y é máximo caso Y for maior que X
+
+    max(3, 4, X).   [X = 4]
+    max(5, 4, X).   [X = 5]
+
+
+- concatenação de átomos e strings
+    atom_concat('paradigmas', 'ufsc', X).
+    string_concat("paradigmas", "ufsc", X).
+
+  
+RECURSÃO
+    ascendente(X, Y) :- genitor(X, Y).
+    ascendente(X, Y) :- genitor(X, Z), ascendente(Z, Y).
+  
+
+Definindo meta inicial:
+    initialization(main)
+    main :- writeln('hello world'),
+            halt.
+
+
+ENTRADA E SAÍDA
+read(X) : lê uma palavra, número ou string
+    -> caso tiver espaço, string de entrada deve ser entre apóstrofos
+
+writeln(X) : imprime e quebra linha
+write(X) : imprime e não quebra linha
+tab(K)  : imprime K tabulações
+nl : pula linha

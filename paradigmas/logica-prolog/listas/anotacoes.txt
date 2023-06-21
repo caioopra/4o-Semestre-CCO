@@ -1,0 +1,46 @@
+Lista vazia: []
+
+- cabeça, cauda e outros padrões para manipular listas:
+    [H | T] - ao menos um item na listas
+    [H1, H2 | T] - ao menos dois itens na lista
+    [H1, H2] - exatamente dois itens na lista
+    [H] - exatamente um item na lista
+
+
+    comprimento([], 0).
+    comprimento([H | T], C) :- comprimento(T, CT), C is CT+1
+        -> comprimento 0 se vazia; senao, = 1 + comprimento da cauda
+
+Comparando listas: igual(L, L).
+    igual([1, 2, 3], [1, 2, 3]).   -> true
+    igual([a, 2, 3], [a, 2, 3]).   -> true
+
+Inserção em lista: inserir X em lista, lista resultante tem X na cabeca
+inserirElemento(X, L, [X|L]).
+    inserirElemento(1, [2, 3, 4], L). -> L = [1, 2, 3, 4]
+    inserirElemento([4,5,6],[2,3,4],L). -> L = [[4, 5, 6], 2, 3, 4]
+
+
+Ultimo elemento de lista:
+    ultimo([X], X).
+    ultimo([H, H2|T], X) :- ultimo([H2|T], X).
+
+
+Dobro da lista
+dobro([], []).
+dobro([H1|T1], [H2|T2]) :- H2 is H1*2, dobro(T1, T2).
+
+
+
+Predicados prontos:
+    member(Elemento, Lista)
+    length(Lista, Comprimento).
+    append(List1, Lista2, ListaConcatenada)
+    nth0(Index, List, Elemento)  % True quando elemento está na posição index da lista (contagem a partir de 0)
+    list_to_set(Lista, Conjunto)
+    max_member(Max, list)
+    min_member(min, List)
+    reverse(lista1, list2)
+    permutation(Lista1, lista2)
+
+
